@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10.0),
-          color: Colors.blue[600],
+          color: Colors.brown[600],
           child: Text(
             "MagicPlatform",
             style: TextStyle(
