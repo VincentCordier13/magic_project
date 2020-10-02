@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class NavigationBarWidget extends StatelessWidget {
+class InformationBottomWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 100,
       child: Row(
         children: <Widget> [
-          Expanded(child: Container()),
+          SizedBox(width: 20),
           GestureDetector(
             child: Text(
-              "Nous contacter",
+              "Information sur le site",
               style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w600, color: Colors.grey,
               ),
@@ -19,7 +19,7 @@ class NavigationBarWidget extends StatelessWidget {
 
             }, 
           ),
-          SizedBox(width: 20),
+          Expanded(child: Container()),
         ],
       ),
     );
