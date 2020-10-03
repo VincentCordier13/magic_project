@@ -10,7 +10,7 @@ class HomeSpeechWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            "MAKE DEALS\nMAGIC AMAZING",
+            "MAKE DEALS\nMAGIC",
             style: TextStyle(
               fontWeight: FontWeight.w800, fontSize: 80, height: 0.9
             ),
