@@ -5,9 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "magic_project",
+            "name": "Launch Chrome",
             "request": "launch",
-            "type": "dart"
+            "type": "pwa-chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
         }
+
+        // {
+        //     "name": "magic_project",
+        //     "request": "launch",
+        //     "type": "dart"
+        // }
     ]
 }
