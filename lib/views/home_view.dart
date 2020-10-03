@@ -22,13 +22,13 @@ class HomeView extends StatelessWidget {
               ), 
               Container(
                 alignment: Alignment.topLeft,
-                child: Image.asset('angel.png',
+                child: Image.asset('assets/angel.png',
                   height: 300,
                 ),
               ),
               Container(
                 alignment: Alignment.bottomRight,
-                child: Image.asset('demon.png',
+                child: Image.asset('assets/demon.png',
                   height: 300,
                 )
               ), 

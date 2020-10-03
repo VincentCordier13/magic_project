@@ -10,7 +10,7 @@ class InformationBottomWidget extends StatelessWidget {
           SizedBox(width: 20),
           GestureDetector(
             child: Text(
-              "Information sur le site",
+              "Informations",
               style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w600, color: Colors.grey,
               ),

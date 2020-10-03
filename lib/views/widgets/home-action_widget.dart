@@ -9,7 +9,7 @@ class HomeActionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [                
-          Image.asset('cards.png',
+          Image.asset('assets/cards.png',
               height: 200,
           ),
           SizedBox(height: 10),
