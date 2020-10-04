@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomeActionWidget extends StatelessWidget {
+class FirstNavWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +12,13 @@ class HomeActionWidget extends StatelessWidget {
           Image.asset('assets/cards.png',
               height: 200,
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 10,),
           Text(
             "Visiter le site",
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w600, color: Colors.grey,
+              fontWeight: FontWeight.w600,
+              fontSize: 18,  
+              color: Colors.grey,
             )
           ),
         ],

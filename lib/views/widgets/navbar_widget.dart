@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class NavigationBarWidget extends StatelessWidget {
+class NavBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
