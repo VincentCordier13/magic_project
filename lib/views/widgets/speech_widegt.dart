@@ -6,6 +6,7 @@ class SpeechWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, screen) {
+
         var columnAligment = 
           screen.deviceScreenType == DeviceScreenType.desktop ? CrossAxisAlignment.start :
           screen.deviceScreenType == DeviceScreenType.tablet ? CrossAxisAlignment.center :
@@ -29,7 +30,6 @@ class SpeechWidget extends StatelessWidget {
 
         
         return Container(
-          width: 600,
           child: Column(
             crossAxisAlignment: columnAligment,
             mainAxisAlignment: MainAxisAlignment.center,

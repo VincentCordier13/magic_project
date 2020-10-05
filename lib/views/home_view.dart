@@ -47,8 +47,9 @@ class _HomeViewDestop extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             child: Row(
-              children: <Widget> [
-                SpeechWidget(),
+              children: [
+                SpeechWidget(),              
+                SizedBox(height: 10,),
                 Expanded(
                     child: FirstNavWidget(),
                 ),
@@ -80,36 +81,44 @@ class _HomeViewTablet extends StatelessWidget {
     return Column(
       children: [
         NavBarWidget(),
+
         SizedBox(height: 20,),
-        Expanded(
+
+        Container(
+          alignment: Alignment.center,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SpeechWidget(),
-              SizedBox(height: 30,),
-              FirstNavWidget(),
-            ],
+              SizedBox(height: 10,),
+              Expanded(
+                  child: FirstNavWidget(),
+              ),
+            ]
           ),
         ),
+
         SizedBox(height: 20,),
-        Container(
-          height: 200,
-          child: Row(
+
+        Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(child: Container()),
               Container(
-                alignment: Alignment.bottomLeft,
-                child: Image.asset('assets/angel.png',),
+                child: Image.asset('assets/angel.png',
+                  height: 300,
+                )
               ),
               Expanded(child: Container()),
               Container(
-                alignment: Alignment.bottomRight,
-                child: Image.asset('assets/demon.png',)
+                child: Image.asset('assets/demon.png',
+                  height: 300,
+                )
               ),
               Expanded(child: Container()),
             ],
           ),
-        ),
+        
+
       ],
     );
   }
@@ -120,38 +129,51 @@ class _HomeViewMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: <Widget> [
+      children: [
         NavBarWidget(),
+
         SizedBox(height: 20,),
-        Expanded(
-                  child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SpeechWidget(),
-                SizedBox(height: 30,),
-                FirstNavWidget(),
-              ],
-            ),
-        ),
-        SizedBox(height: 20,),
+
         Container(
-          height: 150,
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              SpeechWidget(),
+              SizedBox(height: 10,),
+              Expanded(
+                  child: FirstNavWidget(),
+              ),
+            ]
+          ),
+        ),
+
+        SizedBox(height: 20,),
+
+        Expanded(
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(child: Container()),
-              Container(
-                alignment: Alignment.bottomLeft,
-                child: Image.asset('assets/angel.png',),
-              ),
+              Expanded(
+                child: Container(
+                  child: Image.asset('assets/angel.png',
+                    height: 300,
+                  )
+                ),
+              ), 
               Expanded(child: Container()),
-              Container(
-                alignment: Alignment.bottomRight,
-                child: Image.asset('assets/demon.png',)
-              ),
+              Expanded(
+                child: Container(
+                  child: Image.asset('assets/demon.png',
+                    height: 300,
+                  )
+                ),
+              ), 
               Expanded(child: Container()),
             ],
           ),
         ),
+
       ],
     );
   }
