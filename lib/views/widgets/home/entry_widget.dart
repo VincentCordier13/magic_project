@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:magic_project/app/locator.dart';
+import 'package:magic_project/app/router.dart';
+import 'package:magic_project/services/navigation_service.dart';
 
-class FirstNavWidget extends StatelessWidget {
+class EntryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class FirstNavWidget extends StatelessWidget {
         ],
       ),
       onTap: () {
-
+        locator<NavigationService>().navigateTo(ShopsRoute);
       },
     );
   }

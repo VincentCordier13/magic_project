@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class CenteredTemplate extends StatelessWidget {
+class CenteredLayout extends StatelessWidget {
   final Widget child;
-  const CenteredTemplate({Key key, this.child}) : super(key: key);
+  const CenteredLayout({Key key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

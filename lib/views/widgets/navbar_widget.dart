@@ -12,7 +12,9 @@ class NavBarWidget extends StatelessWidget {
             child: Text(
               "Nous contacter",
               style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w600, color: Colors.grey,
+                fontSize: 18, 
+                fontWeight: FontWeight.w600, 
+                color: Colors.grey,
               ),
             ),
             onTap: () {

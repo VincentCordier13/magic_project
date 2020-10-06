@@ -20,15 +20,14 @@ class SpeechWidget extends StatelessWidget {
         var descriptionFontSize = 
           screen.deviceScreenType == DeviceScreenType.desktop ? 20.0 :
           screen.deviceScreenType == DeviceScreenType.tablet ? 18.0 :
-          screen.deviceScreenType == DeviceScreenType.mobile ? 15.0 :
+          screen.deviceScreenType == DeviceScreenType.mobile ? 18.0 :
           null;
         var textAligment = 
           screen.deviceScreenType == DeviceScreenType.desktop ? TextAlign.start :
           screen.deviceScreenType == DeviceScreenType.tablet ? TextAlign.center :
           screen.deviceScreenType == DeviceScreenType.mobile ? TextAlign.center :
           null;
-
-        
+       
         return Container(
           child: Column(
             crossAxisAlignment: columnAligment,
@@ -40,7 +39,7 @@ class SpeechWidget extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: FontWeight.w800, 
                   fontSize: titleFontSize, 
-                  height: 0.9
+                  height: 1,
                 ),
               ),
               SizedBox(
@@ -50,8 +49,9 @@ class SpeechWidget extends StatelessWidget {
                 textAlign: textAligment,
                 text: TextSpan(
                     style: TextStyle(
+                      fontWeight: FontWeight.normal, 
                       fontSize: descriptionFontSize, 
-                      height: 1.7, 
+                      height: 1.5, 
                       color: Colors.grey[800]
                   ),
                   children: <TextSpan>[
