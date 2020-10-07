@@ -3,6 +3,7 @@ import 'package:magic_project/app/locator.dart';
 import 'package:magic_project/app/router.dart';
 import 'package:magic_project/services/navigation_service.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:magic_project/extensions/widget_extension.dart';
 
 class NavBarWidget extends StatelessWidget {
   final bool isHomeView;
@@ -18,13 +19,14 @@ class NavBarWidget extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(width: 50),
-              isHomeView ? Container()
+              isHomeView 
+                ? Container() 
                 : GestureDetector(
-                    child: Image.asset("assets/magic-the-gathering.jpg",),
-                    onTap: () {
-                      locator<NavigationService>().navigateTo(HomeRoute);
-                    }, 
-                  ), 
+                  child: Image.asset("assets/magic-the-gathering.jpg",),
+                  onTap: () {
+                    locator<NavigationService>().navigateTo(HomeRoute);
+                  }, 
+                ), 
               Expanded(child: Container()),
               GestureDetector(
                 child: Text(
@@ -36,9 +38,9 @@ class NavBarWidget extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-
+                  locator<NavigationService>().navigateTo(MailerRoute);
                 }, 
-              ),
+              ).showCursorOnHover.moveUpOnHover(0, -10),
               SizedBox(width: 50),
             ],
           ),

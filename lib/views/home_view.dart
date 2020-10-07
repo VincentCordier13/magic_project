@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magic_project/views/layouts/centered_layout.dart';
-import 'package:magic_project/views/widgets/home/entry_widget.dart';
-import 'package:magic_project/views/widgets/home/speech_widget.dart';
+import 'package:magic_project/views/widgets/home/home-entry_widget.dart';
+import 'package:magic_project/views/widgets/home/home-speech_widget.dart';
 import 'package:magic_project/views/widgets/navbar_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -45,12 +45,12 @@ class _HomeViewDestop extends StatelessWidget {
           Container(
             alignment: Alignment.center,
             child: Row(children: [
-              SpeechWidget(),
+              HomeSpeechWidget(),
               SizedBox(
                 height: 10,
               ),
               Expanded(
-                child: EntryWidget(),
+                child: HomeEntryWidget(),
               ),
             ]),
           ),
@@ -85,9 +85,9 @@ class _HomeViewTablet extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           child: Column(children: [
-            SpeechWidget(),
+            HomeSpeechWidget(),
             SizedBox(height: 30,),
-            EntryWidget(),
+            HomeEntryWidget(),
           ]),
         ),
 
@@ -136,9 +136,9 @@ class _HomeViewMobile extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           child: Column(children: [
-            SpeechWidget(),
+            HomeSpeechWidget(),
             SizedBox(height: 30,),
-            EntryWidget(),
+            HomeEntryWidget(),
           ]),
         ),
 

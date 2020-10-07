@@ -16,18 +16,18 @@ class CenteredScrollLayout extends StatelessWidget {
           child: appBar,
         ),
       ),
-      body: Container(
-        alignment: Alignment.topCenter,
-        padding: const EdgeInsets.fromLTRB(50, 10, 50, 0),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: 1200),
-          child: SingleChildScrollView(
-            child: Column(
-              children: children,
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.topCenter,
+          padding: const EdgeInsets.fromLTRB(50, 10, 50, 0),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 1200),
+            child:  Column(
+                children: children,
             )
           ),
         ),
-      ),    
+      ),
     );
   }
 }
