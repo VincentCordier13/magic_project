@@ -28,7 +28,7 @@ class _HomeViewDestop extends StatelessWidget {
             child: Stack(children: [
               Container(
                 alignment: Alignment.topCenter,
-                child: NavBarWidget(),
+                child: NavBarWidget(isHomeView: true),
               ),
               Container(
                 alignment: Alignment.topLeft,

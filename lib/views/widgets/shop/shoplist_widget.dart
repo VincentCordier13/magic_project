@@ -3,53 +3,52 @@ import 'package:flutter/material.dart';
 class ShopListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(20),
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      crossAxisCount: 2,
-      children: <Widget>[
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text("He'd have you all unravel at the"),
-          color: Colors.teal[100],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Heed not the rabble'),
-          color: Colors.teal[200],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Sound of screams but the'),
-          color: Colors.teal[300],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Who scream'),
-          color: Colors.teal[400],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution is coming...'),
-          color: Colors.teal[500],
-        ),
-        Container(
-          padding: const EdgeInsets.all(8),
-          child: const Text('Revolution, they...'),
-          color: Colors.teal[600],
-        ),
-      ],
+    return Container(
+      child: GridView.count(
+        shrinkWrap: true,
+        crossAxisCount: 4,
+        crossAxisSpacing: 30,
+        mainAxisSpacing: 30,
+        children: [
+          _ShopItem(title: "Butin des trois Rois", text:"Sainte-Catherine", asset: "assets/butin-des-trois-rois.jpg",),
+          _ShopItem(title: "Butin des trois Rois", text:"Sainte-Catherine", asset: "assets/butin-des-trois-rois.jpg",),
+          _ShopItem(title: "Butin des trois Rois", text:"Sainte-Catherine", asset: "assets/butin-des-trois-rois.jpg",),
+          _ShopItem(title: "Butin des trois Rois", text:"Sainte-Catherine", asset: "assets/butin-des-trois-rois.jpg",),
+          _ShopItem(title: "Butin des trois Rois", text:"Sainte-Catherine", asset: "assets/butin-des-trois-rois.jpg",),
+          _ShopItem(title: "Butin des trois Rois", text:"Sainte-Catherine", asset: "assets/butin-des-trois-rois.jpg",),
+          _ShopItem(title: "Butin des trois Rois", text:"Sainte-Catherine", asset: "assets/butin-des-trois-rois.jpg",),
+          _ShopItem(title: "Butin des trois Rois", text:"Sainte-Catherine", asset: "assets/butin-des-trois-rois.jpg",),
+        ],
+      )
     );
   }
 }
 
 class _ShopItem extends StatelessWidget {
+  final String title;
+  final String text;
+  final String asset;
+  const _ShopItem({Key key, this.title, this.text, this.asset}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return GestureDetector(
+      child: Card(
+        color: Colors.grey,
+        elevation: 3,
+        child: Center(
+          child: Column(
+            children: [
+              Expanded(child: Image.asset(asset)),
+              Text(title, textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+              Text(text, textAlign: TextAlign.center, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
+            ],
+          ),
+        ),
+      ),
+      onTap: () {
+
+      }
     );
   }
 }

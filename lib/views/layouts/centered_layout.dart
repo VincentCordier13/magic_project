@@ -9,7 +9,7 @@ class CenteredLayout extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        padding: const EdgeInsets.all(60),
+        padding: const EdgeInsets.all(50),
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 1200),
