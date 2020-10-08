@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_scrollbar/flutter_web_scrollbar.dart';
 
 class CenteredScrollLayout extends StatelessWidget {
   final List<Widget> children;
   final Widget appBar;
-  const CenteredScrollLayout({Key key, this.children, this.appBar}) : super(key: key);
+  CenteredScrollLayout({Key key, this.children, this.appBar}): super(key: key);
+
+  final ScrollController _scrollControler = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +19,22 @@ class CenteredScrollLayout extends StatelessWidget {
           child: appBar,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          alignment: Alignment.topCenter,
-          padding: const EdgeInsets.fromLTRB(50, 10, 50, 0),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 1200),
-            child:  Column(
-                children: children,
-            )
+      body: Scrollbar(
+        controller: _scrollControler,
+        child: SingleChildScrollView(
+            controller: _scrollControler,
+            child: Container(
+              alignment: Alignment.topCenter,
+              padding: const EdgeInsets.fromLTRB(50, 10, 50, 0),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 1200),
+                child: Column(
+                  children: children,
+                )
+              ),
+            ),
           ),
-        ),
+        
       ),
     );
   }
