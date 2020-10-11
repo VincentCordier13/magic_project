@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:magic_project/views/layouts/centeredscroll_layout.dart';
+import 'package:magic_project/views/layouts/centered-scroll_layout.dart';
 import 'package:magic_project/views/widgets/navbar_widget.dart';
 import 'package:magic_project/views/widgets/shop/shop-map_widget.dart';
 import 'package:magic_project/views/widgets/shop/shop-list_widget.dart';
@@ -23,13 +23,16 @@ class _ShopViewDestop extends StatelessWidget {
   Widget build(BuildContext context) {
     return CenteredScrollLayout(
       appBar: NavBarWidget(),
-      children: [
-        SizedBox(height: 30,),
-        ShopListWidget(),
-        SizedBox(height: 30,),
-        ShopMapWidget(),
-        SizedBox(height: 30,),
-      ]);
+      child: Column(
+        children: [
+          SizedBox(height: 30,),
+          ShopListWidget(),
+          SizedBox(height: 30,),
+          ShopMapWidget(),
+          SizedBox(height: 30,),
+        ]
+      )
+    );
   }
 }
 

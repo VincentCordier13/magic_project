@@ -30,7 +30,7 @@ class _ShopMapWidgetState extends State<ShopMapWidget> {
             new Marker(
               width: 50.0,
               height: 50.0,
-              point: shop.latLng,
+              point: shop.latlng,
               builder: (context) => GestureDetector(
                 child: Image.asset("assets/map-marker.png"),
                 onTap: () {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magic_project/app/locator.dart';
-import 'package:magic_project/models/shop.dart';
+import 'package:magic_project/models/shop_model.dart';
 import 'package:magic_project/viewmodels/shops_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:magic_project/extensions/widget_extension.dart';
@@ -31,14 +31,30 @@ class ShopListWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("coucou"),
-                        SizedBox(width: 10),
-                        Text("poto"),
+                        GestureDetector(
+                          onTap: () {
+                            viewmodel.goWebsite(viewmodel.shops[index]);
+                            print("behind shop card");
+                          },
+                          child: Text('website', 
+                            style: TextStyle(decoration: TextDecoration.underline,),
+                          ),
+                        ).showCursorOnHover,
                       ],
                     )
                   ),
-                  Center(child: _ShopItem(shop: viewmodel.shops[index]).showCursorOnHover.moveUpOnHover(0, -30)),
-                  
+                  Center(
+                    child: GestureDetector(
+                      child: _ShopItem(
+                        shop: viewmodel.shops[index]
+                      ),
+                      onTap: () {  
+                        print("shop card " + viewmodel.shops[index].id.toString()); 
+                        //viewmodel.shopSelection(viewmodel.shops[index]);
+                        viewmodel.goWebsite(viewmodel.shops[index]);
+                      },
+                    )
+                  ).moveUpOnHover(0, -30),
                 ]
               );
             },
@@ -50,30 +66,25 @@ class ShopListWidget extends StatelessWidget {
 }
 
 class _ShopItem extends StatelessWidget {
-  final Shop shop;
+  final ShopModel shop;
   const _ShopItem({Key key, this.shop}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Card(
-        color: Colors.grey,
-        elevation: 3,
-        child: Container(
-          padding: EdgeInsets.all(10),
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              Expanded(child: Image.asset(shop.photo)),
-              Text(shop.name, textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-              Text(shop.address, textAlign: TextAlign.center, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
-            ],
-          ),
+    return Card(
+      color: Colors.grey,
+      elevation: 3,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            Expanded(child: Image.asset(shop.photo)),
+            Text(shop.name, textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            Text(shop.address, textAlign: TextAlign.center, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
+          ],
         ),
       ),
-      onTap: () {
-        print(shop.id);
-      }
     );
   }
 }

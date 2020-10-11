@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+import 'package:universal_html/html.Dart' as html;
 
 import 'package:magic_project/views/animations/translate-onhover_amination.dart';
 
 extension HoverExtensions on Widget {
-  static final appContainer =
-      html.window.document.getElementById('app-container');
+  static final appContainer = html.window.document.querySelectorAll('flt-glass-pane')[0];
 
   Widget get showCursorOnHover {
     return MouseRegion(
