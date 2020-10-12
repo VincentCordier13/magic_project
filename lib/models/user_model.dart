@@ -8,7 +8,22 @@ class UserModel {
 
   UserModel({this.id, @required this.name, @required this.password, @required this.email});
 
-  Map<String, dynamic> toJson() {}
+  Map<String, dynamic> toData() {
+    return {
+      'id': id,
+      'name': name,
+      'password': password,
+      'email': email,
+    };
+  }
 
-  static UserModel fromData(Map<String, dynamic> Function() data) {}
+  static UserModel fromData(Map<String, dynamic> data, String id) {
+    if (data == null) return null;
+    return UserModel(
+      id: id,
+      name: data['name'],
+      password: data['password'],
+      email: data['email']
+    );
+  }
 }

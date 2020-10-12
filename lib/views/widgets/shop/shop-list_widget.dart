@@ -1,66 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:magic_project/app/locator.dart';
 import 'package:magic_project/models/shop_model.dart';
 import 'package:magic_project/viewmodels/shops_viewmodel.dart';
-import 'package:stacked/stacked.dart';
 import 'package:magic_project/extensions/widget_extension.dart';
 
 class ShopListWidget extends StatelessWidget {
+  final ShopsViewModel viewmodel;
+  const ShopListWidget({Key key, this.viewmodel}) : super(key: key);
+
+
+
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<ShopsViewModel>.nonReactive(
-      viewModelBuilder: () => locator<ShopsViewModel>(),
-      builder: (context, viewmodel, child) {
-        return Container(
-          
-          child: GridView.builder(
-            shrinkWrap: true,
-            padding: EdgeInsets.all(30),
-            itemCount: viewmodel.shops.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              crossAxisSpacing: 30,
-              mainAxisSpacing: 30,
-            ),
-            itemBuilder: (context, index) {
-              return Stack(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            viewmodel.goWebsite(viewmodel.shops[index]);
-                            print("behind shop card");
-                          },
-                          child: Text('website', 
-                            style: TextStyle(decoration: TextDecoration.underline,),
-                          ),
-                        ).showCursorOnHover,
-                      ],
-                    )
-                  ),
-                  Center(
-                    child: GestureDetector(
-                      child: _ShopItem(
-                        shop: viewmodel.shops[index]
-                      ),
-                      onTap: () {  
-                        print("shop card " + viewmodel.shops[index].id.toString()); 
-                        //viewmodel.shopSelection(viewmodel.shops[index]);
-                        viewmodel.goWebsite(viewmodel.shops[index]);
-                      },
-                    )
-                  ).moveUpOnHover(0, -30),
-                ]
-              );
-            },
-          ),
-        );
-      }
+    return Container(
+      child: GridView.builder(
+        shrinkWrap: true,
+        padding: EdgeInsets.all(30),
+        itemCount: viewmodel.isBusy ? 4 : viewmodel.shops.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          crossAxisSpacing: 30,
+          mainAxisSpacing: 30,
+        ),
+        itemBuilder: (context, index) {
+          return viewmodel.isBusy 
+          ? Container(color: Colors.blue,)
+          : Center(
+            child: GestureDetector(
+              child: _ShopItem(
+                shop: viewmodel.shops[index]
+              ),
+              onTap: () {  
+                print("shop card " + viewmodel.shops[index].id.toString()); 
+                viewmodel.shopSelection(viewmodel.shops[index]);
+                viewmodel.goWebsite(viewmodel.shops[index].website);
+              },
+            ).showCursorOnHover
+          );
+        },
+      ),
     );
   }
 }

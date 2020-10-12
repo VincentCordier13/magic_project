@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:magic_project/app/locator.dart';
 import 'package:magic_project/viewmodels/mailer_viewmodel.dart';
 import 'package:magic_project/views/layouts/centered-scroll_layout.dart';
-import 'package:magic_project/views/widgets/navbar_widget.dart';
+import 'package:magic_project/views/widgets/navigation-bar_widget.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 
@@ -28,7 +28,7 @@ class _MailerViewDestop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CenteredScrollLayout(
-      appBar: NavBarWidget(),
+      appBar: NavigationBarWidget(),
       child: ViewModelBuilder<MailerViewModel>.nonReactive(
         viewModelBuilder: () => locator<MailerViewModel>(),
         builder: (context, viewmodel, child) {

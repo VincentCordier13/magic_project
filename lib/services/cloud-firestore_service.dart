@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:magic_project/models/shop_model.dart';
 import 'package:magic_project/models/user_model.dart';
@@ -16,78 +14,71 @@ class CloudFirestoreService {
   // ----- Users
 
   Future editUser(UserModel user) async {
-    _handleException(onTry: () async {
-      await _usersCollectionReference.doc(user.id).set(user.toJson());
-    });
+    try {
+      await _usersCollectionReference.doc(user.id).set(user.toData()); 
+    } catch (e) { return _exception(e); } 
   }
 
-  Future getUser(String uid) async {
-    _handleException(onTry: () async {
-      var userData = await _usersCollectionReference.doc(uid).get();
-      return UserModel.fromData(userData.data);
-    });
+  Future getUser(String id) async {
+    try {
+      var userData = await _usersCollectionReference.doc(id).get();
+      return UserModel.fromData(userData.data(), id);
+    } catch (e) { return _exception(e); } 
 
   }
 
   // ----- Shops
 
-  Future addShop(ShopModel shop) async {
-    _handleException(onTry: () async {
-      await _shopsCollectionReference.add(shop.toMap());
-    });
-  }
+  // Future addShop(ShopModel shop) async {
+  //   try {
+  //     await _shopsCollectionReference.add(shop.toData());
+  //   } catch (e) { return _exception(e); } 
+  // }
 
-  Future getShopsOnceOff() async {
-    _handleException(onTry: () async {
-      var shopSnapshot = await _shopsCollectionReference.get();
-      if (shopSnapshot.docs.isNotEmpty) {
-        return shopSnapshot.docs
-            .map((snapshot) => ShopModel.fromMap(snapshot.data(), snapshot.id))
-            .where((mappedItem) => mappedItem.name != null)
+  Future getShops() async { 
+    try {
+        var shopSnapshot = await _shopsCollectionReference.get();
+        if (shopSnapshot.docs.isNotEmpty) {
+          return shopSnapshot.docs
+            .map((snapshot) => ShopModel.fromData(snapshot.data(), snapshot.id))
             .toList();
-      }
-    });
+        }
+    } catch (e) { return _exception(e); } 
   }
 
-  Stream listenToShopsRealTime() {
+  Stream listenShops() {
     _shopsCollectionReference.snapshots().listen((shopsSnapshot) {
       if (shopsSnapshot.docs.isNotEmpty) {
-        var posts = shopsSnapshot.docs
-            .map((snapshot) => ShopModel.fromMap(snapshot.data(), snapshot.id))
+        var shops = shopsSnapshot.docs
+            .map((snapshot) => ShopModel.fromData(snapshot.data(), snapshot.id))
             .where((mappedItem) => mappedItem.name != null)
             .toList();
 
-        _shopsController.add(posts);
+        _shopsController.add(shops);
       }
     });
-
     return _shopsController.stream;
   }
 
-  Future deleteShop(String id) async {
-    _handleException(onTry: () async {
-      await _shopsCollectionReference.doc(id).delete();
-    });
-  }
+  // Future deleteShop(String id) async {
+  //   try {
+  //     await _shopsCollectionReference.doc(id).delete();
+  //   } catch (e) { return _exception(e); } 
+  // }
 
-  Future updateShop(ShopModel shop) async {
-    _handleException(onTry: () async {
-      await _shopsCollectionReference.doc(shop.id).update(shop.toMap());
-    });
-  }
+  // Future updateShop(ShopModel shop) async {
+  //   try {
+  //     await _shopsCollectionReference.doc(shop.id).update(shop.toData());
+  //   } catch (e) { return _exception(e); } 
+  // }
 
+   // ----- Shared functions
 
-  // ----- Shared functions
-
-  Future _handleException({@required Function onTry}) async {
-    try {
-      return await onTry();
-    } catch (e) {
-      if (e is PlatformException) {
-        return e.message;
-      }
-      return e.toString();
+  Future _exception(dynamic e) async {
+    if (e is PlatformException) {
+      return e.message;
     }
+    return e.toString();
   }
 
 }

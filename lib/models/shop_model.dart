@@ -15,7 +15,7 @@ class ShopModel {
 
   ShopModel({this.id, @required this.name, @required this.address,  @required this.website, @required this.photo, @required this.location, this.views});
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toData() {
     return {
       'id': id,
       'name': name,
@@ -27,7 +27,7 @@ class ShopModel {
     };
   }
 
-  static ShopModel fromMap(Map<String, dynamic> data, String id) {
+  static ShopModel fromData(Map<String, dynamic> data, String id) {
     if (data == null) return null;
     return ShopModel(
       id: id,
@@ -39,5 +39,9 @@ class ShopModel {
       views: data['views'],
     );
   }
+
+  String toString() {
+    return "{name: $name, address: $address, website: $website, photo: $photo, location: ${location.latitude}, ${location.longitude}, views: $views}";
+  } 
 
 }
