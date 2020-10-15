@@ -18,7 +18,7 @@ class ShopsView extends StatelessWidget {
           desktop: _ShopViewDestop(viewmodel: viewmodel),
           tablet: _ShopViewTablet(),
           mobile: _ShopViewMobile(),
-        )
+        ) 
       )
     );
   }

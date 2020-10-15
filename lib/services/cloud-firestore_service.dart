@@ -37,7 +37,7 @@ class CloudFirestoreService {
 
   Future getShops() async { 
     try {
-        var shopSnapshot = await _shopsCollectionReference.get();
+        var shopSnapshot = await _shopsCollectionReference.get(); 
         if (shopSnapshot.docs.isNotEmpty) {
           return shopSnapshot.docs
             .map((snapshot) => ShopModel.fromData(snapshot.data(), snapshot.id))
@@ -51,7 +51,6 @@ class CloudFirestoreService {
       if (shopsSnapshot.docs.isNotEmpty) {
         var shops = shopsSnapshot.docs
             .map((snapshot) => ShopModel.fromData(snapshot.data(), snapshot.id))
-            .where((mappedItem) => mappedItem.name != null)
             .toList();
 
         _shopsController.add(shops);
@@ -66,11 +65,12 @@ class CloudFirestoreService {
   //   } catch (e) { return _exception(e); } 
   // }
 
-  // Future updateShop(ShopModel shop) async {
-  //   try {
-  //     await _shopsCollectionReference.doc(shop.id).update(shop.toData());
-  //   } catch (e) { return _exception(e); } 
-  // }
+  Future incrViewsShop(ShopModel shop) async {
+    try {
+      shop.views += 1;
+      await _shopsCollectionReference.doc(shop.id).update(shop.toData());
+    } catch (e) { return _exception(e); } 
+  }
 
    // ----- Shared functions
 

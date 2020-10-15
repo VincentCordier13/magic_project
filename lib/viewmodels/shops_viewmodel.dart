@@ -17,10 +17,15 @@ class ShopsViewModel extends FutureViewModel<List<ShopModel>> {
   @override
   Future<List<ShopModel>> futureToRun() async {
     await Future.delayed(Duration(seconds: 1));
-    await _cloudFirestoreService.getShops().then((shopsInCloud) => _shops = shopsInCloud);
-
+    // await _cloudFirestoreService.getShops().then((shopsInCloud) => _shops = shopsInCloud);
+    _cloudFirestoreService.listenShops().listen((shopsData) {
+      List<ShopModel> updatedShops = shopsData;
+      if (updatedShops != null && updatedShops.length > 0) {
+        _shops = updatedShops;
+        notifyListeners();
+      }
+    });
     _shops.forEach((shop) => print(shop.toString()));
-
     return shops;
   }
 
@@ -29,13 +34,16 @@ class ShopsViewModel extends FutureViewModel<List<ShopModel>> {
     notifyListeners();
   }
 
-  void goWebsite(String url) async {
+  void goWebsite(ShopModel shop) async {
+    var url = shop.website;
     print("url : " + url);
     if (await canLaunch(url)) {
-      await launch(url);
+      await launch(url); 
     } else {
       throw 'Could not launch $url';
     }
+
+    await _cloudFirestoreService.incrViewsShop(shop);
   } 
 
 }
